@@ -36,7 +36,6 @@ class App extends React.Component {
   }
 
   handleDelete(taskID) {
-    console.log(this.state.tasksArray);
     this.setState({
       tasksArray: this.state.tasksArray.filter(task => task.id !== taskID)
     });

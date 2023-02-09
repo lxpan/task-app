@@ -12,8 +12,6 @@ class Overview extends React.Component {
 
     render() {
         const { tasks, index, callback } = this.props;
-        console.log(callback);
-
         return (
             <>
                 <h3>Tasks</h3>
