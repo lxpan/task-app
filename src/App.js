@@ -27,7 +27,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         <Overview />
         <form onSubmit={this.handleSubmit}>
           <label>
@@ -36,7 +36,7 @@ class App extends React.Component {
             <input type="submit" name="formSubmit" value="Submit" />
           </label>
         </form>
-      </div>
+      </>
     )
   }
 }
