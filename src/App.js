@@ -1,3 +1,4 @@
+import { computeHeadingLevel } from '@testing-library/react';
 import React from 'react';
 import Overview from './components/Overview';
 
@@ -6,7 +7,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       inputText: '',
-      tasks: []
+      tasksArray: []
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -18,8 +19,11 @@ class App extends React.Component {
   }
 
   handleSubmit(e) {
-    alert('Tasks Array: ' + this.state.inputText);
     e.preventDefault();
+    // update tasksArray with new task from input
+    this.setState({
+      tasksArray: [...this.state.tasksArray, this.state.inputText]
+    });
   }
 
   render() {
