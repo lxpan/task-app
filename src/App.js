@@ -28,7 +28,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <Overview />
+        <Overview tasks={this.state.tasksArray}/>
         <form onSubmit={this.handleSubmit}>
           <label>
             Task Description:
