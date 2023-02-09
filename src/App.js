@@ -13,6 +13,7 @@ class App extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleChange(e) {
@@ -32,7 +33,13 @@ class App extends React.Component {
     // increment task counter
     let newIndex = this.state.taskCounter + 1;
     this.setState({taskCounter: newIndex});
-    
+  }
+
+  handleDelete(taskID) {
+    console.log(this.state.tasksArray);
+    this.setState({
+      tasksArray: this.state.tasksArray.filter(task => task.id !== taskID)
+    });
   }
 
   render() {
@@ -41,6 +48,7 @@ class App extends React.Component {
         <Overview
           tasks={this.state.tasksArray}
           index={this.state.taskCounter}
+          callback={this.handleDelete}
         />
         <form onSubmit={this.handleSubmit} className='task-submit-form'>
           <label>
