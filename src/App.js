@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 import Overview from './components/Overview';
 
 class App extends React.Component {
@@ -6,7 +7,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       inputText: '',
-      tasksArray: []
+      tasksArray: [],
+      taskCounter: 1,  // list ordinals start at 1
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -19,17 +21,28 @@ class App extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    const newTask = {
+      id: this.state.taskCounter,
+      text: this.state.inputText
+    };
     // update tasksArray with new task from input
     this.setState({
-      tasksArray: [...this.state.tasksArray, this.state.inputText]
+      tasksArray: [...this.state.tasksArray, newTask]
     });
+    // increment task counter
+    let newIndex = this.state.taskCounter + 1;
+    this.setState({taskCounter: newIndex});
+    
   }
 
   render() {
     return (
       <>
-        <Overview tasks={this.state.tasksArray}/>
-        <form onSubmit={this.handleSubmit}>
+        <Overview
+          tasks={this.state.tasksArray}
+          index={this.state.taskCounter}
+        />
+        <form onSubmit={this.handleSubmit} className='task-submit-form'>
           <label>
             Task Description:
             <input type="text" name="taskInput" value={this.state.text} onChange={this.handleChange} />

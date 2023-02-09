@@ -1,4 +1,5 @@
 import React from 'react';
+import './Overview.css';
 
 /* Overview renders the tasks */
 class Overview extends React.Component {
@@ -7,15 +8,15 @@ class Overview extends React.Component {
     }
 
     render() {
-        const { tasks } = this.props;
+        const { tasks, index } = this.props;
         return (
             <>
-            <h3>Tasks</h3>
-            <ul>
-                {tasks.map(task => {
-                    return <li key={task + '-task'}>{task}</li>;
-                })}
-            </ul>
+                <h3>Tasks</h3>
+                <ul className='task-list'>
+                    {tasks.map(task => {
+                        return <li key={task.text + '-' + index}>{task.text}</li>;
+                    })}
+                </ul>
             </>
         );
     }
