@@ -1,3 +1,8 @@
 .task-list li {
     list-style-type: none;
 }
+
+.task-actions {
+    display: inline-block;
+    margin-right: 5px;
+}

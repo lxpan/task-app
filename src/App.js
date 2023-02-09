@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import Overview from './components/Overview';
+import update from 'immutability-helper';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -14,6 +16,7 @@ class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.toggleEdit = this.toggleEdit.bind(this);
   }
 
   handleChange(e) {
@@ -25,7 +28,8 @@ class App extends React.Component {
     
     const newTask = {
       id: this.state.taskCounter,
-      text: this.state.inputText
+      text: this.state.inputText,
+      edit: false
     };
     
     // update tasksArray with new task from input
@@ -47,6 +51,17 @@ class App extends React.Component {
     });
   }
 
+  toggleEdit(taskID) {
+    const selectedTask = this.state.tasksArray.filter(task => task.id === taskID);
+    this.setState({
+      tasksArray: this.state.tasksArray.filter(task => task.id !== taskID)
+    });
+
+    this.setState({
+      tasksArray: [...this.state.tasksArray, selectedTask]
+    });
+  }
+
   render() {
     return (
       <>
@@ -54,6 +69,7 @@ class App extends React.Component {
           tasks={this.state.tasksArray}
           index={this.state.taskCounter}
           callback={this.handleDelete}
+          toggleEdit={this.toggleEdit}
         />
         <form onSubmit={this.handleSubmit} className='task-submit-form'>
           <label>
