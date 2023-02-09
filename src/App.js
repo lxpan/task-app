@@ -22,17 +22,23 @@ class App extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    
     const newTask = {
       id: this.state.taskCounter,
       text: this.state.inputText
     };
+    
     // update tasksArray with new task from input
     this.setState({
       tasksArray: [...this.state.tasksArray, newTask]
     });
+    
     // increment task counter
     let newIndex = this.state.taskCounter + 1;
     this.setState({taskCounter: newIndex});
+
+    // clear input after submit
+    e.target.reset();
   }
 
   handleDelete(taskID) {
